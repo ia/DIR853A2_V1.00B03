@@ -1,0 +1,61 @@
+#/bin/sh
+
+NegativeSign="-"
+MAX_TIME=24
+TZ_FILE="/etc/TZ"
+
+if [ ! -f ${TZ_FILE} ]; then
+	echo ${TZ_FILE} " not exist!"
+	exit 1
+fi
+
+#获取所有行字符
+PRE_TIME_ZONE_1ST=`sed 's/[A-Z]//g' /etc/TZ`
+#echo PRE_TIME_ZONE_1ST=${PRE_TIME_ZONE_1ST}
+
+#获取第一行字符
+TIME_ZONE_1ST=`echo ${PRE_TIME_ZONE_1ST} | awk -F ' ' '{print $1}'`
+#echo TIME_ZONE_1ST=${TIME_ZONE_1ST}
+
+#获取第一个字符
+TIME_ZONE_1ST_FIRST=`echo ${TIME_ZONE_1ST} | awk -F "" '{print $1}`
+#echo ${TIME_ZONE_1ST_FIRST}
+
+
+#判断第一个字符是否为“-”
+if [ $TIME_ZONE_1ST_FIRST == $NegativeSign ] 
+then
+#格式化数据
+	TIME_ZONE_1ST=`echo ${TIME_ZONE_1ST} | awk -F '-' '{print $2}'`
+#	echo TIME_ZONE_1ST=${TIME_ZONE_1ST}
+	TIME_ZONE=`printf "-%02u:00\n" $TIME_ZONE_1ST`
+	echo ${TIME_ZONE}
+else
+#格式化数据
+	TIME_ZONE=`printf "+%02u:00\n" $TIME_ZONE_1ST`
+	echo ${TIME_ZONE}
+fi
+
+#检查时区合法性
+if [ $TIME_ZONE_1ST -gt $MAX_TIME ]
+then
+	echo "TIME_ZONE ERROR, EXIT!"
+	exit 1
+fi
+
+#设置NVRAM
+nvram_set "ntp_timezone" ${TIME_ZONE}
+
+#关闭ntpclient
+killall ntpclient
+
+#获取ntp服务器地址
+ntpServer=`nvram_get ntp_server`
+
+#启动ntp进程
+ntpclient -h ${ntpServer} -i 604800 -l -s &
+
+
+
+
+

@@ -1,0 +1,520 @@
+2017/03/13 b202
+ 1. lib/StarterLib, v1.4b188
+ 2. lib/DXmlApiLib, v1.1b162
+ 3. onetouch (daemon), v1.5b202
+  * fix master clone config error issue
+ 4. goahead (daemon), v1.4b185
+ 5. dxml (daemon), v2.1b162
+ 6. easyroaming (daemon), v2.0b199
+
+
+2017/03/02 b197
+ 1. lib/StarterLib, v1.4b188
+ 2. lib/DXmlApiLib, v1.1b162
+ 3. onetouch (daemon), v1.5b185
+ 4. goahead (daemon), v1.4b185
+ 5. dxml (daemon), v2.1b162
+ 6. easyroaming (daemon), v2.0b199
+  * add Easy Roaming v2
+
+
+2016/07/11 b189
+ 1. lib/StarterLib, v1.4b188
+  * fix APP issue: rsshttpport issue in rss.xml (b186 only)
+  * fix rssEncrypt Issue
+  * support dump db by RssUI
+      http://<dev_ip>:<rss_port>//tmp/rssdb_dump.xml
+      http://<dev_ip>:<rss_port>//tmp/rssdb_dump.xml?path=<path>
+    For example, dump runtime
+      http://<dev_ip>:<rss_port>//tmp/rssdb_dump.xml?path=/runtime  
+ 2. lib/DXmlApiLib, v1.1b162
+ 3. onetouch (daemon), v1.5b185
+  * Support Virtual Wlan Interface on Master
+ 4. goahead (daemon), v1.4b185
+  * change rssUI pages to fix rssEncrypt Issue
+ 5. dxml (daemon), v2.1b162
+
+
+2016/05/05, b183
+ 1. lib/StarterLib, v1.4b182
+ 2. lib/DXmlApiLib, v1.1b162
+ 3. onetouch (daemon), v1.5b183
+  * fix SIGTERM issue in b182 release when some special cases.
+ 4. goahead (daemon), v1.4b182
+ 5. dxml (daemon), v2.1b162
+
+2016/04/26, b182
+ 1. lib/StarterLib, v1.4b182
+   * fix OT_log.txt size issue
+ 2. lib/DXmlApiLib, v1.1b162
+ 3. onetouch (daemon), v1.5b182
+   * fix SEQ issue when no slave connected
+   * fix segment fault crash issue when repeater mode & connected with Master
+ 4. goahead (daemon), v1.4b182
+   * add protected access of OT_log from http
+ 5. dxml (daemon), v2.1b162
+   * none
+
+2016/01/22, b173
+1. dlinklib/StarterLib, v1.4b164
+  * some minor changes
+  * Allow user specify the "ps" command by node "/fwupgradeinfo/_ps_cmd", 
+    default value is "ps aux"   
+2. dlinklib/DXmlApiLib, v1.1b162
+  * change make file
+3. onetouch daemon, v1.5b173
+  * filter unused SSDP packets             
+  * solve slave device issue: sometime need subscribt to master 2~3 times
+  * change some messages in OT_log.txt
+  * change roaming default setting            
+4. goahead daemon, v1.4b162
+  * some minor changes
+5. dxml daemon, v2.1b162
+  * change make file
+
+
+2015/11/27, b157
+1. dlinklib/StarterLib, b1.4b155
+  * add processRssNotification() API in platform.c to support notify mechanism
+  * support monitor specified slaves before SIGUSR1 trigger clone action
+2. dlinklib/DXmlApiLib, b1.1b151
+  * add function "dxmlSetFile" 
+3. onetouch daemon, ver b1.5b151             
+  * Change notification of Channel & FailoverAPList as SSDP header
+  * Delay 3 sec to restart AP after receiving cloning data
+  * Set max number of Slaves as 32        
+4. goahead daemon, ver b1.4b154 
+  * Modify RssUI FW upgrade feature
+  * Modify RssUI mulitiple language feature
+  * add language_tw.js  
+5. xmldb, ver b2.1b151
+  * change some wording
+
+
+2015/10/22
+1. dlinklib/StarterLib, b1.4b140
+  * None 
+2. dlinklib/DXmlApiLib, b1.1b145
+  * change some header files & make file
+3. onetouch daemon, ver b1.5b147             
+  * Solve Issue: Master don't clone new config to Slave when find Slave config was old      
+4. goahead daemon, ver b1.4b147 
+  * Solve RsUI & APP login issue
+5. xmldb, ver b2.1b145
+  * change make file
+
+2015/10/10
+1. dlinklib/StarterLib, b1.4b140
+  * Support Flag to Disable/Enable bypass login page when device is default setting
+  * change valid login key check (each key of each page to same key in one minutes)
+2. dlinklib/DXmlApiLib, b1.1b141
+  * change some header files
+3. onetouch daemon, ver b1.5b140             
+  * solve cloning issue: change of WLAN-IF Enabled of Slave
+  * avoid cloning action delay due to other timer events      
+4. goahead daemon, ver b1.4b140 
+  * Enable to bypass login page when device is default setting
+5. xmldb, ver b2.1b137
+  * None 
+
+2015/09/24
+1. xmldb, ver b2.1b137 
+  * solve memory leakage due to client "-f" option 
+
+2015/09/16
+1. dlinklib/StarterLib, b1.4b135
+  * rebuild due to name of api changed  
+2. dlinklib/DXmlApiLib, b1.1b135
+  * change name of files
+    + libconfapi.so --> libdxmlapi.so
+    + iconf.h       --> idxml.h
+    + iconf_api.h   --> idxml_api.h
+    + misc.h        --> libmisc.h
+    + libxmldbc.h   --> libdxmlc.h
+3. onetouch daemon, ver b1.5b135             
+  * rebuild due to name of api changed
+  * solve cloning issue: change of WLAN-IF Enabled of Slave      
+4. goahead daemon, ver b1.4b135 
+  * rebuild due to name of api changed  
+5. xmldb, ver b2.1b135 
+  * rebuild due to name of api changed  
+  * change socket type from UNIX to LINUX (port 5535) 
+
+2015/09/10
+1. dlinklib/StarterLib, b1.4b130
+  * Support rss_encrypt feature  
+2. dlinklib/confapilib, b1.1b130
+  * Support rss_encrypt feature
+  * Change name of published function:
+     // iconf_api.h 
+     #define xget_str 			dxmlGetStr
+     #define xget_encrystr		dxmlGetEncryStr
+     #define xset_str			dxmlSetStr
+     #define xget_int			dxmlGetInt
+     #define xset_int			dxmlSetInt
+     #define xget_row			dxmlGetRow
+     #define xget_noe			dxmlGetNoe
+     #define xdel 				dxmlDel
+     // iconf.h
+     #define config_gsd 		lib_ConfigGsd
+     #define config_count_row	lib_ConfigCountRow
+     #define config_commit		lib_ConfigCommit
+     #define execute			lib_Execute
+     #define execute_extend		lib_ExecuteExtend
+     #define exe_shell			lib_ExeShell
+     #define config_auth		lib_ConfigAuth     
+3. onetouch daemon, ver b1.5b130             
+  * Support rss_encrypt feature
+  * Solve issue: event "Clear SEQ" after each reboot for SLAVE device
+  * Solve issue: "$rssport" doesn't be trasfer for fwupgrade url 
+  * Enhance Cloning: do Cloning action for none-Repeater SLAVE first         
+4. goahead daemon, ver b1.4b130 
+  * Support rss_encrypt feature    
+5. xmldb, ver b2.1b130 
+  * Clear unused features
+  * Support rss_encrypt feature   
+
+2015/08/12
+1. onetouch daemon, ver b1.4b126             
+  * Correct "sid" as "udn" in /onetouch/apcloninginfo/connmaster block.
+    The "sid" still can be read/writen to compatible with old version models.
+  * fix crash issue due to SIGPIPE signal   
+
+2015/07/21
+1. onetouch daemon, ver b1.4b124             
+  * fix subscribe fail due to manually change the value of onetouch's lochttpport 
+
+2015/07/06
+1. dlinklib/StarterLib, b1.3b123
+  * remove unused codes and add some debug messages
+2. dlinklib/confapilib, b1.3b106
+  * None  
+3. onetouch daemon, ver b1.4b123             
+  * add dynamic fuzzy region
+  * fix issues when easyroaming is always-on(3)
+  * add rss_checker.sh, used to monitor alive of daemons      
+4. goahead daemon, ver b1.3b123 
+  * remove meta name "author" in asp files
+  * fix issues when easyroaming is always-on(3)    
+5. xmldb, ver b2.0b119 
+  * None 
+
+2015/06/19
+1. dlinklib/StarterLib, b1.3b122
+  * Solve some issues when cloning to 5G slave
+  * Ignore Channel due to Master channel unsupported by Slave       
+2. dlinklib/confapilib, b1.3b106
+  * None  
+3. onetouch daemon, ver b1.4b122             
+  * add scripts/rss_checker.sh to monitor daemons alive status
+  * modify scripts/rss_xml.php to solve the easyroaming=3 issue     
+4. goahead daemon, ver b1.3b121 
+  * fix multiple post FW issue in same time
+5. xmldb, ver b2.0b119 
+  * Some minors changes 
+
+2015/06/04
+1. dlinklib/StarterLib, b1.3b113
+  * fix issue: ap-cloning action miss to update some values in /uplink/extendersite block. 
+2. dlinklib/confapilib, b1.3b106
+  * None  
+3. onetouch daemon, ver b1.4b117             
+  * Add message for debug SIGUSR1 signal for cloning
+  * fix can't open http://<dev_ip>:5533/dyndev-RSS/  
+4. goahead daemon, ver b1.3b111 
+  * RssUI: hidden wlan on/off icon when unsupported 
+5. xmldb, ver b2.0b106 
+  * None 
+
+2015/05/20
+0. For All
+  * change format of version of daemons, x.xx.xx-->x.xxbvv, where vv is its svn 
+    revision
+1. dlinklib/StarterLib, b1.3b106
+  * change version of daemon. 
+2. confapilib, b1.0b106
+  * add version info 
+3. onetouch daemon, ver b1.4b108             
+  * change version of daemon
+  * fix easyroaming issue: runtime info unmatch likage status
+  * Change default value of SEQ=1 for Master, SEQ=0 for Slave
+  * fix Slave none-stop cloning actions when Master is default setting   
+4. goahead daemon, ver b1.3b106 
+  * change version of daemon 
+  * modify some RssUI pages
+5. xmldb, ver b2.0b106 
+  * add version info 
+
+2015/05/01
+1. dlinklib/StarterLib, b1.3.8
+  * platform.c
+    + add uiDefaultUserID() and uiDefaultUserPW()
+    + add EXTCALL_FwUpload API, used for release memory to store FwUpgrade file
+  * fix string size wrong used issue
+  * add somes rssvars of system information
+2. onetouch daemon, ver b1.4.9             
+  * add codes to save version information to nodes in /runtime/VerInfo   
+3. goahead daemon, ver b1.3.4 
+  * add codes to call EXTCALL_FwUpload API when receive FwUpgrade event 
+  * add codes to save version information to nodes in /runtime/VerInfo   
+  * RssUI file in /www/rssui
+    + add "GET /rssui/_sys_info.asp" to show onetouch informations
+    + Update RssUI files 
+
+2015/03/27
+1. dlinklib/StarterLib, b1.3.7
+  * remove unused items in DHttpd_WebsRecPtr structure
+  * modify some functions: dhttpd_WebsHandler, trim, trimTo, strip_chars      
+2. onetouch daemon, ver b1.4.8             
+  * Solve daemon crash problem (http_receive issue due to dispatch_http_request)   
+3. goahead daemon, ver b1.3.3 
+  * Update RssUI files
+  * Remove unused items in DHttpd_WebsRecPtr structure
+4. 修掉goahead daemon 在做FW升级的时候会吃两倍memory的问题 
+
+
+2015/03/13
+1. dlinklib/StarterLib, v1.3.6
+  * Support RssChk feature
+2. onetouch daemon, ver b1.4.7             
+  * None  
+3. goahead daemon, ver b1.3.2 
+  * Update RssUI files (for iOS APP) 
+
+
+2015/01/22
+1. dlinklib/StarterLib, v1.3.5
+  * 解决 SSID Name, Key, username and password 最前/最后有空白字元时会被截掉的问题
+  * 修改 RssUI 路径 Porting 时可以自行定义 (dhttpd.h)
+ 
+
+2015/01/14
+1. dlinklib/StarterLib, v1.3.4
+  * Fixed onetouch APP set fail issue with the uplink SSID's length larger than 
+    16.
+2. onetouch daemon, ver b1.4.7             
+  * change seq=-1 in UPnP packets when wlan interface is disabled/unsupported
+  * fix memory leakage issue  
+3. goahead daemon, ver b1.3.2 
+   * Nothing to be changed 
+
+
+2014/12/24
+1. dlinklib/StarterLib, v1.3.3
+   * Fix User Login Timeout 计算有误问题
+   * 修改 xmldb socket id, 避免与 Vendor's xmldb 冲突问题。
+   * 修改 xmldb/xmldbc 的名称可改为 dxml/dxmlc。
+   * 增加 EasyRoaming Startup Trigger: 收到 M-Search Query/Response Packet
+2. onetouch daemon, ver b1.4.6             
+   * Fix onetouch 重启时，如果之前有 STA 连接状况，onetouch daemon 会 block 问题  
+3. goahead daemon, ver b1.3.2 
+   * Nothing to be changed 
+
+
+2014/12/16
+1. dlinklib/StarterLib, v1.3.2
+   * Support RssUI Login Auth Features
+   * User Auth 防止暴力密码剖解
+     - 如果 login 错误的间隔时间不到 10 mins 且达到错误 10次，该 IP 会被 Block 
+       10 分钟不允许 Login
+     - Add login key check, only one for each ip; 防止 login packet 被抓包重送   
+   * Support MAC Validate Check feature
+   * Support XMLDB node '/uplink/extendersite/failoverbssidlist'
+   * Support to check twice/many times FW Upgrade 
+   * 限制 Max Records of AuthList is 100           
+2. onetouch daemon, ver b1.4.5             
+   * Support Easy Romaing 3 modes:
+     - Eanbled & Always-on: the value of node /onetouch/easyroaming is '3'
+     - Disabled: the value of node /onetouch/easyroaming is '0'
+     - Eanbled & Auto (default): the value of node /onetouch/easyroaming is '1' 
+       or others
+       Auto: 如果发现周围有 device 发出urn:d-link-com:service:D-Link-CfgSlave:1"  
+       SSDP Service，device 的 EasyRoming 会自动开启，但如果 4 mins 没有收到后， 
+       EasyRoming 会再自动关闭 
+   * Add MAC Validate Check feature
+   * Support AP-Cloning 对2.4G Slaves and 5G Slaves的分别管理
+   * Support AP-Cloning 对 Repeater Uplink BSSID 的管理 (Max AP = 20)
+   * Add HTTP Query Error Reponse
+3. goahead daemon, ver b1.3.2 
+   * RssUI/miniUI 
+     - Add Login Feature, Auth-Timeout of login user, 防止暴力密码剖解
+     - Add local FW Upgrade feature
+     - Support to check twice/many times FW in remote FW Upgrade
+     - Fix Issue when wlenbl=2/3
+   * Move Some Functions into StarterLib. (dhttpd.c)                 
+ 
+
+2014/11/17
+1. dlinklib/StarterLib, v1.3.1c
+   * Fix memory issue in some platform
+   * Fix tag validate issue when validate string is empty
+   * Fix logPrintf issue when directly printout string and the '%' in string
+   * Fix Html Decode issue
+2. onetouch daemon, ver b1.4.4c             
+   * regenerate due to some starterlib header files were changed. 
+   * Fix memory issue in some platform
+3. goahead daemon, ver b1.3.1c 
+   * regenerate due to some starterlib header files were changed.   
+
+
+2014/10/20
+1. dlinklib/StarterLib, v1.3.1
+   * Fix special character issue in RssUI/miniUI & RssSet feature
+2. onetouch daemon, ver b1.4.4             
+   * The node value of "/runtime/onetouch/sysnotifycmd" will become empty when 
+     signal 'SIGUSR1' was done by Onetouch daemon.   
+3. goahead daemon, ver b1.3.1 
+   * Fix special character issue in RssUI/miniUI
+   * Fix some bugs and layout issue in RssUI/miniUI.        
+   * Support file language_xx.js can be customized by user to support different 
+     language UI.
+     
+                                                                               
+2014/09/19
+1. dlinklib, v1.3.0
+   * Support RssUI/miniUI One-Touch & FW Upgrade features         
+2. onetouch daemon, ver b1.4.3
+   * add Xmldb node "/onetouch/starter" to enable/disable starter feature.
+     Its Default value is "1" (Enabed).   
+     - if the starter feature is disbaled, the AP Cloning, FW Upgrade also will 
+       be disabled automatically.                                                   
+   * Support RssUI/miniUI One-Touch & FW Upgrade features
+     - If you want to use PC/Phone browser test it, you should disable the 
+       AuthKey check,
+         xmldbc -i -s /runtime/checkstarterkey 0
+     - URL: http://<dev_ip>:8008/rssui/main.asp
+     - add Xmldb node "/fwupgradeinfo/urlgetcmd" to define the HTTP GET function 
+       command. 
+       Note: Suggest to use the busy box "wget" feature.                        
+     - add some nodes (RssUI, cfgSEQ, slaveList and master) in SSDP device 
+       scription XML.
+   * fix issue of Easy Roaming when configure wrong parameters
+   * 调整 AP Cloning Feature, 避免一些不必要的 Cloning 动作。
+   * Fix Issue: Master WiFi Channel is Auto 时, Slave 的 channel 没有随 Master 
+     using channel 而变动！
+   * 解决 Master Device 会偶发性 Crash Issue：Slave trigger to disconcect with 
+     Master.        
+3. goahead daemon, ver b1.3.0                   
+   * Support RssUI/miniUI One-Touch & FW Upgrade features
+     + add RssUI used files in /www/rssui directory
+                            
+                
+2014/08/22
+1. dlinklib, v1.2.3
+   * 更正 AP Cloning 后计算 exeflag 方式
+   * 调整 StarterKey & DKey 检查
+   * add function 'queryxml' used to generate rss.xml 
+   * solve php parser issue: "//" and "/*" in string will occure php syntax 
+     error      
+2. onetouch daemon, ver b1.4.1
+   * 修正 rss.xml 产生脚本
+   * Chnage UPnP "Server:" Header as "OneTouch/1.1"
+   * Add tag "SEQ:" and "SList:" in AP Cloning SSDP packet header
+   * Change Easy Romaing Initialization & default setting as "-43 20 3 5" when 
+     node is empty
+   * 新增 Slave & Master 对 SEQ & SList 的检查，确保 Master/Slave Subscription 
+     存在的正确性。               
+3. goahead daemon, ver b1.2.3
+   * 调整所有者认证检测 
+           
+
+2014/08/13
+
+1. dlinklib, ver b1.2.2
+   * Support <xxx_validate> tag, 由于开发人员定义 <xxx> tag 的输入检查(限制)。
+   * 解决问题：特殊字元照成 XML 格式解析有误，使得 RSSGET/RSSSET 无法正常工作。
+   * 解决问题：Slave 收到 Cloning 时没有正常解析 RSS XML 中 WLAN Access Control, 
+     使得 Access Control 没有生效。        
+2. onetouch daemon, ver b1.4.0
+   * 解决 Master Device 会偶发性 SSDP 不工作问题。
+   * Support <xxx_validate> Tag, 由于开发人员定义 <xxx> Tag 的输入检查(限制)。
+   * 在 SSDP-Alive/SSDP-200OK/GEND-Subscript Header 增加 SEQ, 避免不必要 Cloning 
+     Data 通知。      
+   * 调整 Master Packets Trigger Slave Subscript 的检查机制及 Subscript 后 
+     timeout 的检查。
+   * 调整使得 Slave 不容易 Subscript timeout 
+      - 加大 Master 对 Subscripted Slaves 的 Timeout 时间：60 -> 120 seconds.
+      - 增加 Master 发送 SSDP-Alive Packets 同时，也发送 SSDP-MSearch CfgSlave 
+        Service
+   * 修正部分 Resource 没有正常 Free/Release 的问题。
+   * 调整 Easy Roaming 在 AP Cloning 为 Disable 时也能正常工作。
+   * 增加对 SIGTERM signal 的处理。
+   *                  
+3. goahead daemon, ver b1.2.2
+   * 解决问题：有时 goahead 收到某些 Query Packet 会 crash 
+
+
+2014/07/22
+
+1. dlinklib, ver b1.2.1
+   * When log file size = 0, disable log-to-file 
+2. onetouch daemon, ver b1.3.1
+   * 新增 log file 初始化动作
+3. goahead daemon, ver b1.2.1
+   * 新增 log file 初始化动作
+
+
+2014/07/10
+
+1. dlinklib, ver b1.2
+   * 解决更改 xmldb node value 后, factorydefault tag value 没有更改为 0 的问题。
+   * 新增 debug_log 功能 (debug_log.o and debug_log.h) ，在 /www/tmp 目录下会自动产生 OT_log.txt & OT_log.txt.old; 
+     新增 MACRO 定义 LOG_XXXX 用来输出 Log message, 废除原先的 MACRO 定义：OT_MSG，DBG_MSG and D_MSG 等      
+2. onetouch daemon, ver b1.3
+   * 修改 Easy Roaming 的 default setting as "-43 20 3 5" defined in XMLDB node /onetouch/easyroaminginfo
+   * 修改 Easy Roaming 的 Region 计算机制 (Dynamic Regions)   
+   * 配合 debug log 功能，修改输出 debug message 所用的 MACRO 
+   * 新增 onetouch startup parameter "-d <dbg_level>", configure the log level, dbg_level=0(Emergy)~7(debug)     
+3. goahead daemon, ver b1.2
+   * 配合 debug log 功能，修改输出 debug message 所用的 MACRO 
+   * 修改：当使用 Browser 测试 RssGet URL http://<dev_ip>:8008/tmp/rss.xml 时，
+     必须先设置 XMLDB node /runtime/checkstarterkey 的值为 0 (关 starterkey 的检查）后，才可以使用！     
+
+
+2014/05/19
+
+1. onetouch daemon, ver b1.2
+   * 解决使用 API exe_ExternalCall(EXTCALL_DeauthSta) 前 /runtime/easyroaming/deauthsta 为空的问题
+
+2014/05/12
+ 
+1. onetouch daemon, ver b1.1
+   * 解决 bind interface 处理不当问题
+   * 加启动参数 '-a' automatic search virtual interface of specified interface.
+   * 解决当 Slave 的 Uplink 是 WWan802.11 时，Slave 收到 AP Cloning 通知时 ExterderSite Block 设置不当问题       
+2. goahead daemon, ver b1.1
+   * add option'-h', used to show version  
+   * 解决 APP FwUpgrader upload FW 后，APP 显示 Upgrade 不成功但 device 却已经成功的问题
+3. dlinklib, ver b1.1
+   * platform.c
+     - add "void msgPrintf(char *fmt,...)", used to print out "NECESSARY" message to console/telnet
+     - add return value of exe_ExternalCall(int exeFlag), Return: 0: Sucess, 1: Fail
+   * xml_parser.h
+     - modify definitions of 'OT_MSG(...)' & 'OT_MSG2(...)'    
+4. 其他
+   * 更新 rss_xml.php, 解决移除 /lan/ip node 后, 产生 rss.xml 时内容有误问题。
+5. Porting guid, v1.0.4
+   * Change descriptions of EXTCALL_WanResync, EXTCALL_FwUpgrade and EXTCALL_UpdateStaRssi used in API exe_ExternalCall
+   * add return value of exe_ExternalCall(int exeFlag)
+   * Change xml format of /runtime/apcloninginfo block, which is used by onetouch daemon
+                
+
+2014/05/05 
+
+1. onetouch daemon, ver b1 
+   * 提供 version 显示：
+     - 执行时有 version information 显示
+     - 提供 version information 查询： onetouch -h
+   * 增加对接受到的 ssdp packet 增加 netmask 检查, 避免非同 Subnet 的 Master 的干扰
+   * 解决 daemon 启动时为了能确实断线在重启前已连线的 Slave/Master 而等待（约60~90Sec)，却使得 Starter Service 也不能工作问题。
+   * 解决 Master 回应 M-Search CfgMaster Servie 有时会失败的问题。
+   * 解决没有准确定时产生 SSDP Alive & M-Search 等动作问题。
+   * 增加 Easy Roaming 的 Region 切换的稳定性。
+   * 解决 Easy Roaming 对多 STA 连线时处理不对的问题。
+2. goahead daemon
+   * 解决 APP Post 提交后， 没有准确返回 Rssset_result.xml，使得手机出现错误信息的问题。 
+3. dlinklib, ver b1
+   * 解决因为使用 printf(..) 而在部分 platform 不能显示需输出的信息的问题。
+   * 解决处理 AP Cloning 的 RssXML data 时，当 Uplink 是 WWan802.11 时没有准确设定 ExtenderSite block 相关信息。
+4. 其他
+   * 更新rss_xml.php，因为之前的 Release 遗漏更新此档案，而产生 RssGet 时 FwUpgradeURL 有误的问题。

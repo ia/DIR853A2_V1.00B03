@@ -1,0 +1,141 @@
+<dbros>
+	<onetouch>
+		<specversion>
+			<major>1</major>
+			<minor>1</minor>
+		</specversion>
+		<dataencrypt>0</dataencrypt>
+		<apcloning>1</apcloning>
+		<fwupgrade>1</fwupgrade>
+		<easyroaming>0</easyroaming>
+		<safety360>0</safety360>
+		<oneclick>1</oneclick>
+		<apcloninginfo>
+			<connmaster>
+				<mac>80:26:89:5f:fc:77</mac>
+				<seq>0</seq>
+				<seq5>0</seq5>
+				<status>0</status>
+			</connmaster>
+		</apcloninginfo>
+		<easyroaminginfo>-43 20 3 5</easyroaminginfo>
+		<tempdirecory>/var/tmp</tempdirecory>
+		<scriptdirecory>/etc_ro/onetouch/scripts</scriptdirecory>
+		<lochttpport>5533</lochttpport>
+		<rsshttpport>8008</rsshttpport>
+		<configurable>1</configurable>
+		<debuglevel>7</debuglevel>
+		<rsshttproot>/www</rsshttproot>
+		<rssgeturl>http://$lanip:$rssport/tmp/rss.xml</rssgeturl>
+		<rssseturl>http://$lanip:$rssport/tmp/rssset.xgi</rssseturl>
+		<rsschkurl>http://$lanip:$rssport/tmp/rssvar_checkresult.xml</rsschkurl>
+		<rssuiurl>http://$lanip:$rssport/rssui/main.asp</rssuiurl>
+	</onetouch>
+	<sys>
+		<friendlyname>DIR-882 Dualband Wireless Router</friendlyname>
+		<friendlyname_validate>0,64,1,0</friendlyname_validate>
+		<presentationurl>http://$lanip/</presentationurl>
+		<manufacturer>D-Link</manufacturer>
+		<manufacturerurl>http://www.dlink.com.tw/</manufacturerurl>
+		<modeldescription>DIR Product</modeldescription>
+		<modelname>D-Link DIR-882</modelname>
+		<modelnumber>DIR-882</modelnumber>
+		<modelurl>http://www.dlink.com/</modelurl>
+		<udn>uuid:8026895f-fc65-8026-895f-fc6500000000</udn>
+		<user id="1">
+			<password_validate>0,16,1,0</password_validate>
+			<name></name>
+			<password></password>
+		</user>
+		<factorydefault>0</factorydefault>
+		<devicetype>Router</devicetype>
+		<routerenbl>3</routerenbl>
+		<icon id="1">
+			<mimetype>image/png</mimetype>
+			<width>144</width>
+			<height>144</height>
+			<depth>24</depth>
+			<url>http://$lanip:$rssport/icon_144x144_router.png</url>
+		</icon>
+	</sys>
+	<lan>
+		<wirelessconcurrent>1</wirelessconcurrent>
+		<wireless2.4 id="1">
+			<configurable>1</configurable>
+			<wlenbl>1</wlenbl>
+			<wlschedule>1</wlschedule>
+			<wirelessbssid>80:26:89:5f:fc:77</wirelessbssid>
+			<wirelessname>dlink-2g</wirelessname>
+			<wirelessname_validate>0,32,1,0</wirelessname_validate>
+			<encryptionmode>WPAWPA2</encryptionmode>
+			<encryptiontype>TKIP</encryptiontype>
+			<encryptionkey>12345678</encryptionkey>
+			<encryptionkey_validate>0,63,0,0</encryptionkey_validate>
+			<country>SG</country>
+			<channellist>0,1,2,3,4,5,6,7,8,9,10,11</channellist>
+			<channel>0</channel>
+			<channelusing>1</channelusing>
+			<accesscontrol>
+				<wlacenbl>2</wlacenbl>
+				<wlacmode>0</wlacmode>
+				<acrule id="1">
+					<active>0</active>
+					<mac>11:22:33:44:55:66</mac>
+				</acrule>
+				<acrule id="2"></acrule>
+			</accesscontrol>
+		</wireless2.4>
+		<wireless5 id="1">
+			<configurable>1</configurable>
+			<wlenbl>1</wlenbl>
+			<wlschedule>1</wlschedule>
+			<wirelessbssid>80:26:89:5f:fc:78</wirelessbssid>
+			<wirelessname>dlink-5g</wirelessname>
+			<wirelessname_validate>0,32,1,0</wirelessname_validate>
+			<encryptionmode>WPAWPA2</encryptionmode>
+			<encryptiontype>TKIP</encryptiontype>
+			<encryptionkey>12345678</encryptionkey>
+			<encryptionkey_validate>0,63,0,0</encryptionkey_validate>
+			<country>SG</country>
+			<channellist>0,36,40,44,48,149,153,157,161,165</channellist>
+			<channel>0</channel>
+			<channelusing>36</channelusing>
+			<accesscontrol>
+				<wlacenbl>2</wlacenbl>
+				<wlacmode>0</wlacmode>
+				<acrule id="1">
+					<active>0</active>
+					<mac>11:22:33:44:55:66</mac>
+				</acrule>
+				<acrule id="2"></acrule>
+			</accesscontrol>
+		</wireless5>
+		<ip>192.168.0.1</ip>
+	</lan>
+	<uplink>
+		<configurable>1</configurable>
+		<hardwaresupport>Ethernet</hardwaresupport>
+		<hardwaretype>Ethernet</hardwaretype>
+		<conntype>dhcp</conntype>
+		<loginusername></loginusername>
+		<loginpassword></loginpassword>
+		<loginusername_validate>0,64,1,0</loginusername_validate>
+		<loginpassword_validate>0,64,0,0</loginpassword_validate>
+		<ip>192.168.1.200</ip>
+		<netmask>255.255.255.0</netmask>
+		<gateway>192.168.1.1</gateway>
+		<dns>192.168.168.210 192.168.168.201</dns>
+	</uplink>
+	<fwupgradeinfo>
+		<vendor>D-Link</vendor>
+		<devicemac>80:26:89:5f:fc:76</devicemac>
+		<hwversion>B1</hwversion>
+		<regioncode>SG</regioncode>
+		<currfwversion>1.00.00</currfwversion>
+		<currfwfilename>DIR882B1_FW100SCHB01.bin</currfwfilename>
+		<accesskey>332ef57f6b57e3e1e09255a71b029c66</accesskey>
+		<fwupgradeurl>http://$lanip:$rssport/goform/rssfwupgd.xgi</fwupgradeurl>
+		<fwupgradefn>upld.bin</fwupgradefn>
+		<urlgetcmd>wget -O &quot;$savefn&quot; &quot;$url&quot;</urlgetcmd>
+	</fwupgradeinfo>
+</dbros>

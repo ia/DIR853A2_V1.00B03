@@ -1,0 +1,116 @@
+diff --git a/mt_wifi/embedded/ap/ap_auth.c b/mt_wifi/embedded/ap/ap_auth.c
+index b50dcc2..60a63e7 100644
+--- a/mt_wifi/embedded/ap/ap_auth.c
++++ b/mt_wifi/embedded/ap/ap_auth.c
+@@ -29,6 +29,8 @@
+ #ifdef DOT11R_FT_SUPPORT
+ #include "ft.h"
+ #endif /* DOT11R_FT_SUPPORT */
++#include "dlink_nl_ctrl.h"
++extern int (*dlink_ignore_hook)(const unsigned char *mac, IgnoreRadioEnum radio);
+ 
+ 
+ /*
+@@ -428,7 +430,16 @@ static VOID APPeerAuthReqAtIdleAction(RTMP_ADAPTER *pAd, MLME_QUEUE_ELEM *Elem)
+ #ifdef BAND_STEERING
+ 	BOOLEAN bBndStrgCheck = TRUE;
+ #endif /* BAND_STEERING */
++#ifdef DLINK_NL_CTRL
++	PFRAME_802_11 pFrame = (PFRAME_802_11)Elem->Msg;
+ 
++	if (dlink_ignore_hook &&
++		dlink_ignore_hook((const char *)pFrame->Hdr.Addr2, (Elem->Channel > 14) ? IGNORE_RADIO_5G : IGNORE_RADIO_2G))
++	{
++		printk(KERN_DEBUG "***** ignore AUTH Request from %pM *****\n", pFrame->Hdr.Addr2);
++		return;
++	}
++#endif /* DLINK_NL_CTRL */
+ 
+ 	if (pAd->ApCfg.BANClass3Data == TRUE)
+ 	{
+diff --git a/mt_wifi/embedded/ap/ap_sync.c b/mt_wifi/embedded/ap/ap_sync.c
+index 840b8ee..d064eb2 100644
+--- a/mt_wifi/embedded/ap/ap_sync.c
++++ b/mt_wifi/embedded/ap/ap_sync.c
+@@ -27,6 +27,9 @@
+  */
+ 
+ #include "rt_config.h"
++#include "dlink_nl_ctrl.h"
++extern void (*dlink_monitor_hook)(const unsigned char *mac, char rssi, RadioEnum radio);
++extern int (*dlink_ignore_hook)(const unsigned char *mac, IgnoreRadioEnum radio);
+ 
+ #define OBSS_BEACON_RSSI_THRESHOLD		(-85)
+ 
+@@ -77,6 +80,9 @@ VOID APPeerProbeReqAction(
+ 	BSS_STRUCT *pMbss;
+ #endif /* CONFIG_HOTSPOT_R2 */
+ 
++#ifdef DLINK_NL_CTRL
++	CHAR RealRssi = -127;
++#endif /* DLINK_NL_CTRL */
+ 
+ #ifdef WSC_AP_SUPPORT
+ 	UCHAR Addr3[MAC_ADDR_LEN];
+@@ -85,6 +91,22 @@ VOID APPeerProbeReqAction(
+ 	COPY_MAC_ADDR(Addr3, pFrame->Hdr.Addr3);
+ #endif /* WSC_AP_SUPPORT */
+ 
++#ifdef DLINK_NL_CTRL
++	if (dlink_monitor_hook) {
++		RealRssi = RTMPMaxRssi(pAd, ConvertToRssi(pAd, &Elem->rssi_info, RSSI_IDX_0),
++								ConvertToRssi(pAd, &Elem->rssi_info, RSSI_IDX_1),
++								ConvertToRssi(pAd, &Elem->rssi_info, RSSI_IDX_2));
++		dlink_monitor_hook((const char *)pFrame->Hdr.Addr2, RealRssi, (Elem->Channel > 14) ? WIFI_RADIO_5G_1 : WIFI_RADIO_2G);
++	}
++
++	if (dlink_ignore_hook &&
++		dlink_ignore_hook((const char *)pFrame->Hdr.Addr2, (Elem->Channel > 14) ? IGNORE_RADIO_5G : IGNORE_RADIO_2G))
++	{
++		printk(KERN_DEBUG "***** ignore Probe Request from %pM *****\n", pFrame->Hdr.Addr2);
++		return;
++	}
++#endif /* DLINK_NL_CTRL */
++
+ #ifdef WDS_SUPPORT
+ 	/* if in bridge mode, no need to reply probe req. */
+ 	if (pAd->WdsTab.Mode == WDS_BRIDGE_MODE)
+diff --git a/mt_wifi/embedded/include/dlink_nl_ctrl.h b/mt_wifi/embedded/include/dlink_nl_ctrl.h
+new file mode 100644
+index 0000000..5a61c7d
+--- /dev/null
++++ b/mt_wifi/embedded/include/dlink_nl_ctrl.h
+@@ -0,0 +1,33 @@
++/*
++ *
++ *		 ___        _     _        _
++ *		|   \  ___ | |   (_) _ _  | |__
++ *		| |) ||___|| |__ | || ' \ | / /
++ *		|___/      |____||_||_||_||_\_\
++ *
++ * 	Copyright (c) 2016, D-Link Corporation  All rights reserved.
++ *
++ * 	This program is the proprietary software contains confidential material of D-Link
++ * 	Corporation and/or its licensors, and may only be used, duplicated, modified
++ * 	or distributed pursuant to the terms and conditions of a separate, written
++ * 	license agreement executed between you and D-Link Corporation.
++ *
++ */
++
++#ifndef _DLINK_NL_CTRL_H
++#define _DLINK_NL_CTRL_H
++#define DLINK_NL_CTRL 1
++
++typedef enum {
++	WIFI_RADIO_2G = 0,
++	WIFI_RADIO_5G_1,
++	WIFI_RADIO_5G_2,
++	WIFI_RADIO_NUM
++} RadioEnum;
++
++typedef enum {
++	IGNORE_RADIO_2G = 1,
++	IGNORE_RADIO_5G = 2
++} IgnoreRadioEnum;
++
++#endif
